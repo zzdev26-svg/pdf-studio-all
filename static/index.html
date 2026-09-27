@@ -162,13 +162,15 @@
   <p class="subtitle">Subí un PDF y obtené el Markdown limpio y estructurado, listo para que lo interprete un agente de IA.</p>
 </header>
 
-<!-- TODO: reemplazar data-ad-slot por el ID real de la unidad "Header" creada en AdSense -->
+<!-- Ad unit deshabilitada hasta tener el data-ad-slot real (creado en AdSense tras la aprobación).
 <ins class="adsbygoogle ad-slot"
      style="display:block"
      data-ad-client="ca-pub-9702844972960784"
      data-ad-slot="REPLACE_HEADER_SLOT_ID"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
+-->
+
 
 <div class="wrap">
   <label class="dropzone" id="dropzone">
@@ -197,13 +199,14 @@
     <textarea id="output" readonly spellcheck="false"></textarea>
   </div>
 
-  <!-- TODO: reemplazar data-ad-slot por el ID real de la unidad "Debajo del resultado" creada en AdSense -->
+  <!-- Ad unit deshabilitada hasta tener el data-ad-slot real (creado en AdSense tras la aprobación).
   <ins id="resultAd" class="adsbygoogle ad-slot hidden"
        style="display:block"
        data-ad-client="ca-pub-9702844972960784"
        data-ad-slot="REPLACE_RESULT_SLOT_ID"
        data-ad-format="auto"
        data-full-width-responsive="true"></ins>
+  -->
 </div>
 
 <footer>PDF Studio · procesamiento local, sin persistencia de archivos</footer>
@@ -219,13 +222,9 @@
   const output = document.getElementById("output");
   const copyBtn = document.getElementById("copyBtn");
   const downloadBtn = document.getElementById("downloadBtn");
-  const resultAd = document.getElementById("resultAd");
 
   let selectedFile = null;
   let lastFilename = "output.md";
-  let resultAdLoaded = false;
-
-  (window.adsbygoogle = window.adsbygoogle || []).push({});
 
   function setFile(file) {
     if (!file) return;
@@ -280,11 +279,6 @@
       output.value = data.markdown;
       lastFilename = (data.filename || "output").replace(/\.pdf$/i, "") + ".md";
       resultSection.classList.remove("hidden");
-      resultAd.classList.remove("hidden");
-      if (!resultAdLoaded) {
-        resultAdLoaded = true;
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-      }
       setStatus(`Listo. ${data.markdown.length} caracteres generados.`, false, true);
     } catch (err) {
       setStatus(err.message, true);
